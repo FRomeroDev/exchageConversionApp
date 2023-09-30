@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- FERNANDO ROMERO API frontend SPA ProjectTasca - username: admin - password:admin -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Include Bootstrap CSS file -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <!-- Include Bootstrap JavaScript files at the end of the document body -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"
+        integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="icon" type="image/jpg" href="icon.svg" />
+    <title>LottoGenerator</title>
+
+    <!-- Inline CSS styles -->
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <!-- Bootstrap Navigation Bar -->
+    <nav class="navbar navbar-expand-lg custom-navbar fixed-top">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="" alt="Logo de LuckyNumbers" class="logo-img">
+            <span id="custom-title" class="font-italic">ExCurrency</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#/home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Games</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#/login">Log in</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <!-- Contenedor con imagen de fondo -->
+    <div class="container-fluid container-with-bg">
+        <div class="container text-center">
+            <h1>ExCurrency Converter</h1>
+            <h5>Foreign urrency exchange rates</h5>
+            <!-- Puedes agregar más contenido aquí -->
+        </div>
+    </div>
+
+
+    <!-- Contenedor para calcular las monedas (arriba y alargado) -->
+    <div class="container mt-5 conversion-container rounded">
+        <form id="formConversion">
+            <div class="row">
+                <div class="col-md-4">
+                    <!-- Casilla para ingresar la cantidad (a la izquierda) -->
+                    <div class="form-group">
+                        <label for="amount" class="font-weight-bold">Amount:</label>
+                        <input type="text" id="amount" class="form-control imput-custom" placeholder="Enter amount">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <!-- Casilla para seleccionar monedas De: -->
+                    <div class="form-group">
+                        <label for="currencyFrom" class="font-weight-bold">From:</label>
+                        <select id="currencyFrom" class="form-control imput-custom">
+                            <option value="EUR">Euro</option>
+                            <option value="USD">Dólar estadounidense</option>
+                            <option value="GBP">Libra esterlina</option>
+                            <!-- Agrega más opciones según sea necesario -->
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <!-- Casilla para seleccionar monedas A: -->
+                    <div class="form-group">
+                        <label for="currencyTo" class="font-weight-bold">To:</label>
+                        <select id="currencyTo" class="form-control imput-custom">
+                            <option value="EUR">Euro</option>
+                            <option value="USD">Dólar estadounidense</option>
+                            <option value="GBP">Libra esterlina</option>
+                            <!-- Agrega más opciones según sea necesario -->
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="resultado" class="font-weight-bold">Resultado:</label>
+                <p id="resultado" class="mt-2"></p>
+            </div>
+            <div class="form-group text-right">
+                <button class="btn btn-custom btn-lg">Convert</button>
+                <button class="btn btn-custom btn-lg ml-2">Reset</button>
+            </div>
+        </form>
+    </div>
+
+
+</body>
+<script>
+
+    // Función para reiniciar los valores del formulario
+    function resetForm() {
+        document.getElementById("formConversion").reset();
+    }
+
+    function convert() {
+        let amount = document.getElementById("amount");
+        let currencyFrom = document.getElementById("currencyFrom");
+        let currencyTo = document.getElementById("currencyTo");
+
+        document.getElementById("resultado").innerHTML = "";
+
+        let dataToSend = {
+            "amount": amount,
+            "currencyFrom": currencyFrom,
+            "currencyTo": currencyTo
+        };
+
+
+        fetch("http://localhost:8080/tu_ruta_de_api", { // Reemplaza "tu_ruta_de_api" por la URL de tu API
+            method: 'POST',
+            body: JSON.stringify(dataToSend),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            // with credentials
+            credentials: 'include'
+        }).then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            // Mostrar el resultado
+            document.getElementById("resultado").innerHTML = "Resultado: " + data.resultado;
+            console.log(data);
+        }).catch(function (error) {
+            console.log(error);
+        });
+    }
+
+
+
+
+
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        // Llamar a la función resetForm() cuando se hace clic en el botón "Reset"
+        document.querySelector(".btn[type='reset']").addEventListener("click", resetForm);
+
+        // Cuando el usuario presione el botón de calcular
+        // se ejecuta la función convert
+        document.getElementById("formConversion").addEventListener("submit", function (event) {
+            event.preventDefault();
+            convert();
+        });
+
+    });
+
+</script>
+
+
+</html>

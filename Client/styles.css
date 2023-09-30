@@ -1,0 +1,111 @@
+/* Background style */
+body {
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.9),
+      rgba(255, 255, 255, 0.9)
+    ),
+    url("");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+/* Styles for the welcome message */
+.welcome-text {
+  font-family: "Poppins", sans-serif;
+  font-size: 250%;
+  font-weight: bolder;
+  text-align: center;
+  margin-bottom: 90px;
+}
+
+/* Custom button style */
+.btn-custom {
+  background: #131976;
+  color: #fff;
+  font-weight: bold;
+}
+/* Estilo para el botón en estado hover */
+.btn-custom:hover {
+  background: #363d8d; /* Cambia el color de fondo cuando se hace hover */
+  color: #fff; /* Cambia el color del texto a blanco */
+}
+.custom-navbar {
+  background: #040464;
+}
+
+/* Styles for title and image logo */
+#custom-title {
+  color: #fff;
+  font-size: 35px;
+  font-weight: 900;
+  margin-left: 20px;
+}
+
+.logo-img {
+  width: 50px;
+  height: auto;
+  margin-left: 10px;
+}
+
+/* Styles for titles */
+h1 {
+  font-family: "Segoe UI", sans-serif;
+  /* Usar la fuente Segoe UI */
+  font-weight: bold;
+  /* Negritas */
+}
+
+#filterTitle {
+  margin-top: 10%;
+  color: rgb(79, 77, 77);
+}
+
+.url-container {
+  max-height: 100px;
+  overflow-y: auto;
+}
+/* Cambiar el color del texto del enlace a rojo */
+a {
+  color: #040464;
+}
+/* Estilos adicionales para el botón "Comprar" */
+.btn-lg {
+  padding: 15px 40px; /* Ajusta el padding para alargar el botón */
+}
+/* Estilos para el contenedor principal */
+.conversion-container {
+  position: relative;
+  z-index: 2; /* Asegura que esté encima del card */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Aplica sombra solo al contenedor */
+}
+/* Estilos para el contenedor */
+.container-with-bg {
+  background-image: url("gpt10.jpg"); /* Ruta de tu imagen de fondo */
+  background-size: cover;
+  background-position: center;
+  padding: 100px 0; /* Espacio superior e inferior del contenedor */
+  color: #fff; /* Color del texto en el contenedor */
+  padding: 200px; /* Espaciado interno del contenedor */
+}
+
+/* Estilos adicionales para el texto en el contenedor */
+.container-with-bg h1 {
+  font-size: 36px;
+}
+/* Estilos para el contenedor de conversión */
+.conversion-container {
+  background-color: rgba(255, 255, 255, 1); /* Color de fondo con opacidad */
+  padding: 50px; /* Espaciado interno del contenedor */
+  width: 100%; /* Anchura del 50% */
+  position: absolute;
+  top: 35%; /* Centrado verticalmente */
+  left: 50%; /* Centrado horizontalmente */
+  transform: translate(-50%, -50%);
+  z-index: 1; /* Asegura que esté encima del contenedor de fondo */
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5); /* Sombra con propiedades (ajusta según sea necesario) */
+}
+.imput-custom {
+  box-shadow: rgba(114, 114, 140, 0.1) 0px 0px 16px;
+  height: 50px; /* Ajusta la altura según tus preferencias */
+}
