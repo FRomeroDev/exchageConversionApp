@@ -1,4 +1,3 @@
-
 package es.blaster.exchangeConversion;
 
 import java.io.IOException;
@@ -16,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author raznara
  */
 public class CORSFilter implements Filter {
-    
-   @Override
+
+    @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         // first filter
         HttpServletRequest request = (HttpServletRequest) req;
@@ -39,5 +38,5 @@ public class CORSFilter implements Filter {
     @Override
     public void destroy() {
     }
-    
+
 }

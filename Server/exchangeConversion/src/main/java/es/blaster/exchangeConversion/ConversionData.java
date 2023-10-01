@@ -20,40 +20,40 @@ package es.blaster.exchangeConversion;
  * ---- FTL stack trace ("~" means nesting-related): - Failed at: ${version} [in
  * template "Templates/Classes/Class.java" at line 25, column 13] ----
  */
-public class CurrencyData {
+public class ConversionData {
 
-    private String code;
-    private String name;
-    private double exchangeRate;
+    private double amount;
+    private String currencyFrom;
+    private String currencyTo;
 
-    public CurrencyData(String code, String name, double exchangeRate) {
-        this.code = code;
-        this.name = name;
-        this.exchangeRate = exchangeRate;
+    // Constructores, getters y setters
+    public ConversionData(double amount, String currencyFrom, String currencyTo) {
+        this.amount = amount;
+        this.currencyFrom = currencyFrom;
+        this.currencyTo = currencyTo;
     }
 
-    public String getCode() {
-        return code;
+    public double getAmount() {
+        return amount;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 
-    public String getName() {
-        return name;
+    public String getCurrencyFrom() {
+        return currencyFrom;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCurrencyFrom(String currencyFrom) {
+        this.currencyFrom = currencyFrom;
     }
 
-    public double getExchangeRate() {
-        return exchangeRate;
+    public String getCurrencyTo() {
+        return currencyTo;
     }
 
-    public void setExchangeRate(double exchangeRate) {
-        this.exchangeRate = exchangeRate;
+    public void setCurrencyTo(String currencyTo) {
+        this.currencyTo = currencyTo;
     }
-
 }

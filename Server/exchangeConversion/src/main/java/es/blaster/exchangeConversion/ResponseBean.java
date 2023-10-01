@@ -2,9 +2,9 @@ package es.blaster.exchangeConversion;
 
 public class ResponseBean {
 
-    private double amount;  // Agrega un campo para la cantidad de dinero ingresada por el usuario
-    private String currencyFrom;  // Agrega un campo para la moneda de origen ingresada por el usuario
-    private String currencyTo;  // Agrega un campo para la moneda de destino ingresada por el usuario 
+    private double amount;
+    private String currencyFrom;
+    private String currencyTo;
     private double result;
     private String errorDescription;
 
@@ -39,7 +39,7 @@ public class ResponseBean {
     public void setResult(double result) {
         this.result = result;
     }
-    
+
     public String getErrorDescription() {
         return errorDescription;
     }

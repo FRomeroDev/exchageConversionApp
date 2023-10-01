@@ -9,12 +9,12 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
     <servlet>
-        <servlet-name>luckyNumbers</servlet-name>
-        <servlet-class>es.blaster.exchangeConversion.ConversionApp</servlet-class>
+        <servlet-name>ServletExConverApp</servlet-name>
+        <servlet-class>es.blaster.exchangeConversion.ServletExConverApp</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>luckyNumbers</servlet-name>
-        <url-pattern>/lottoCombination</url-pattern>
+        <servlet-name>ServletExConverApp</servlet-name>
+        <url-pattern>/conversion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
