@@ -1,38 +1,12 @@
-/* Background style */
-/* Background style */
-body {
-  background-image: linear-gradient(
-      rgba(255, 255, 255, 0.9),
-      rgba(255, 255, 255, 0.9)
-    ),
-    url("");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-}
-
 /* Styles for the welcome message */
 .welcome-text {
-  font-family: "Open Sans", sans-serif;
-  font-size: 45px;
+  font-family: "Poppins", sans-serif;
+  font-family: "Ubuntu", sans-serif;
   font-weight: bolder;
+  font-size: 250%;
   text-align: center;
-  margin-bottom: 90px;
-}
-
-/* Custom button style */
-.btn-custom {
-  background: linear-gradient(to bottom, #94a9c6, #040464);
-  color: #fff;
-  font-weight: bold;
-}
-/* Estilo para el botón en estado hover */
-.btn-custom:hover {
-  background: #363d8d; /* Cambia el color de fondo cuando se hace hover */
-  color: #fff; /* Cambia el color del texto a blanco */
-}
-.custom-navbar {
-  background: #040464;
+  margin-bottom: 80px;
+  margin-top: 10%;
 }
 
 /* Styles for title and image logo */
@@ -43,70 +17,111 @@ body {
   margin-left: 20px;
 }
 
+.custom-navbar {
+  background: #040464;
+}
+
 .logo-img {
   width: 50px;
   height: auto;
   margin-left: 10px;
 }
 
+/* Default style for "Log in" button */
+.menu-link {
+  color: white;
+  transition: background-color 0.3s;
+}
+
+.menu-user {
+  color: rgb(132, 128, 128);
+  transition: background-color 0.3s;
+}
+
+/* Style when hovering over "Log in" button */
+/* Style when hovering over menu links */
+.menu-link:hover,
+.menu-user:hover {
+  color: gray;
+}
+
+/* Custom button style */
+.custom-button-login {
+  background-color: #040464;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Custom style for "Reset" button */
+.custom-button-home {
+  background-color: #040464;
+  color: #fff;
+  margin: 1px;
+  font-weight: bold;
+  height: 60px;
+}
+
+/* Style for the button on hover state */
+.btn-custom:hover {
+  background: #363d8d;
+  color: #fff;
+}
+
+/* Background image style */
+.bg-image {
+  background-image: url("fondoGris.jpg");
+  background-size: cover;
+  background-position: center center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+}
+
 /* Styles for titles */
 h1 {
   font-family: "Segoe UI", sans-serif;
-  /* Usar la fuente Segoe UI */
   font-weight: bold;
-  /* Negritas */
 }
 
-#filterTitle {
-  margin-top: 10%;
-  color: rgb(79, 77, 77);
-}
-
-.url-container {
-  max-height: 100px;
-  overflow-y: auto;
-}
-/* Cambiar el color del texto del enlace a rojo */
+/* Change link text color to red */
 a {
   color: #040464;
 }
-/* Estilos adicionales para el botón "Comprar" */
+
+/* Additional styles for "Buy" button */
 .btn-lg {
-  padding: 15px 40px; /* Ajusta el padding para alargar el botón */
-}
-/* Estilos para el contenedor principal */
-.conversion-container {
-  position: relative;
-  z-index: 2; /* Asegura que esté encima del card */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Aplica sombra solo al contenedor */
-}
-/* Estilos para el contenedor */
-.container-with-bg {
-  background-image: url("gpt10.jpg"); /* Ruta de tu imagen de fondo */
-  background-size: cover;
-  background-position: center;
-  padding: 100px 0; /* Espacio superior e inferior del contenedor */
-  color: #fff; /* Color del texto en el contenedor */
-  padding: 200px; /* Espaciado interno del contenedor */
+  padding: 15px 40px;
 }
 
-/* Estilos adicionales para el texto en el contenedor */
-.container-with-bg h1 {
-  font-size: 36px;
+/* Styles for the container */
+.container-with-bg {
+  background-image: url("fondoAzul.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 100px 0;
+  color: #fff;
+  padding: 200px;
 }
-/* Estilos para el contenedor de conversión */
+
+/* Styles for the conversion container */
 .conversion-container {
-  background-color: rgba(255, 255, 255, 1); /* Color de fondo con opacidad */
-  padding: 50px; /* Espaciado interno del contenedor */
-  width: 100%; /* Anchura del 50% */
+  background-color: rgba(255, 255, 255, 1);
+  padding: 50px;
+  width: 100%;
   position: absolute;
-  top: 40%; /* Centrado verticalmente */
-  left: 50%; /* Centrado horizontalmente */
+  top: 40%;
+  left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1; /* Asegura que esté encima del contenedor de fondo */
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5); /* Sombra con propiedades (ajusta según sea necesario) */
+  z-index: 1;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
 }
+
 .imput-custom {
-  box-shadow: rgba(114, 114, 140, 0.1) 0px 0px 16px;
   height: 50px; /* Ajusta la altura según tus preferencias */
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }

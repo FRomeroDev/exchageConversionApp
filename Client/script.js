@@ -1,21 +1,21 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // CALCULAR - CONVERSION -------------------------------------------------
+  // CONVERSION MODULE -------------------------------------------------
+
   function convert() {
-    // Obtener los valores de los elementos del formulario
+    // Get values from the form elements
     let amount = document.getElementById("amount").value;
     let currencyFrom = document.getElementById("currencyFrom").value;
     let currencyTo = document.getElementById("currencyTo").value;
-
-    // Limpiar el contenido del resultado anterior
     document.getElementById("result").innerHTML = "";
 
-    // Crear el objeto de datos a enviar
+    // Create the data object to send
     let dataToSend = {
       amount: amount,
       currencyFrom: currencyFrom,
       currencyTo: currencyTo,
     };
 
+    // Send a fetch request to the server for currency conversion
     fetch("http://localhost:8080/excurrency/conversion?op=conversion", {
       method: "POST",
       body: JSON.stringify(dataToSend),
@@ -29,8 +29,25 @@ document.addEventListener("DOMContentLoaded", function () {
         return response.json();
       })
       .then(function (data) {
-        // Mostrar el resultado
-        document.getElementById("result").innerHTML = data.result;
+        // Display the result
+        document.getElementById(
+          "result"
+        ).innerHTML = `${data.result} ${currencyTo}`;
+        // Display conversion rates
+        const conversionRateFromTo = data.conversionRateFromTo;
+        const conversionRateToFrom = data.conversionRateToFrom;
+        const conversionInfoElement = document.createElement("p");
+        // Aplicar estilos CSS al elemento para hacerlo más pequeño y sin negritas
+        conversionInfoElement.style.fontSize = "18px"; // Cambiar el tamaño de fuente a 12 píxeles
+        conversionInfoElement.style.marginTop = "10px"; // Add top margin for spacing
+        conversionInfoElement.style.fontWeight = "normal";
+        conversionInfoElement.innerHTML = `1 ${currencyFrom} = ${conversionRateFromTo.toFixed(
+          5
+        )} ${currencyTo}<br>1 ${currencyTo} = ${conversionRateToFrom.toFixed(
+          5
+        )} ${currencyFrom}`;
+
+        document.getElementById("result").appendChild(conversionInfoElement);
         console.log(data);
       })
       .catch(function (error) {
@@ -38,8 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-  // Cuando el usuario presione el botón de calcular
-  // se ejecuta la función convert
+  // Calculate button the make a conversion
   document
     .getElementById("formConversion")
     .addEventListener("submit", function (event) {
@@ -47,46 +63,44 @@ document.addEventListener("DOMContentLoaded", function () {
       convert();
     });
 
+  // Function to reset the form
   function resetForm() {
-    // Aquí puedes escribir el código para restablecer los campos del formulario
-    // Por ejemplo, puedes establecer los valores de los campos en blanco o en su valor predeterminado.
     document.getElementById("amount").value = "";
-    document.getElementById("currencyFrom").value = "EUR"; // Establecer a "Euro"
-    document.getElementById("currencyTo").value = "USD"; // Establecer a "Dólar estadounidense"
+    document.getElementById("currencyFrom").value = "EUR";
+    document.getElementById("currencyTo").value = "USD";
     document.getElementById("result").innerHTML = "";
 
-    // Realizar una solicitud fetch para restablecer el formulario en el servidor
+    // Send a fetch request to reset the form on the server
     fetch("http://localhost:8080/excurrency/conversion?op=reset", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      // with credentials
       credentials: "include",
     })
       .then(function (response) {
         if (response.status == 200) {
-          console.log("Formulario restablecido con éxito en el servidor");
+          console.log("Reset ok");
         } else {
-          console.log("Error al restablecer el formulario en el servidor");
+          console.log("Error reset");
         }
       })
       .catch(function (error) {
-        console.log("Error al restablecer el formulario", error);
+        console.log("Error reset", error);
       });
   }
-  // Llamar a la función resetForm() cuando se hace clic en el botón "Reset"
   document.getElementById("resetButton").addEventListener("click", resetForm);
 
-  // LOGIN -------------------------------------------------
-  // Función para mostrar el nombre en la barra de navegación
+  // LOGIN MODULE -------------------------------------------------
+  // Get the current route
+  const currentRoute = window.location.hash;
+  // Function to display the username in the navigation bar
   function showUsername(username) {
     const usernameElement = document.getElementById("username");
     if (usernameElement) {
       usernameElement.textContent = username;
     }
   }
-
   // Función para ocultar el nombre en la barra de navegación
   function hideUsername() {
     const usernameElement = document.getElementById("username");
@@ -95,6 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  // Promise function for user login
   function login() {
     return new Promise((resolve, reject) => {
       let login = document.getElementById("login");
@@ -102,17 +117,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
       let user = {
         username: login.value,
-        //"password": password.value
         password: CryptoJS.SHA256(password.value).toString(),
       };
-
+      // Send a fetch request to login into the form on the server
       fetch("http://localhost:8080//excurrency/conversion?op=login", {
         method: "POST",
         body: JSON.stringify(user),
         headers: {
           "Content-Type": "application/json",
         },
-        // with credentials
         credentials: "include",
       })
         .then(function (response) {
@@ -124,23 +137,21 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .then(function (data) {
           console.log("OK logueado", data);
-          resolve(); // Resuelve la promesa en caso de éxito
-          // Ocultar la sección de inicio de sesión y mostrar la de inicio
+          resolve(); // Resolve the promise on success
+          // Hide the login section and show the home section
           document.getElementById("welcome").style.display = "none";
           document.getElementById("home").style.display = "block";
           showUsername(data.username);
         })
         .catch(function (error) {
           console.log("KO no logueado", error);
-          reject(); // Rechaza la promesa en caso de error
+          reject(); // Reject the promise on error
           alert("Incorrect user or password");
         });
     });
   }
 
-  // Obtener la ruta actual
-  const currentRoute = window.location.hash;
-  // Evento para manejar el envío del formulario de inicio de sesión
+  // Event to handle the login form submission
   document
     .getElementById("loginForm")
     .addEventListener("submit", function (event) {
@@ -148,13 +159,12 @@ document.addEventListener("DOMContentLoaded", function () {
       login();
     });
 
-  // Obtén una referencia al botón "Login" en la barra de menú
+  // Get a reference to the "Login" button in the menu bar
   const loginMenu = document.getElementById("loginMenu");
-
-  // Asigna un evento de clic al botón "Login"
+  // Add a click event to the "Login" button
   loginMenu.addEventListener("click", function (event) {
     event.preventDefault();
-    // Llama a la función login y maneja la promesa resultante
+    // Call the login function and handle the resulting promise
     login()
       .then(() => {
         // Ocultar la sección de inicio de sesión y mostrar la de inicio
@@ -165,18 +175,19 @@ document.addEventListener("DOMContentLoaded", function () {
       .catch(function (error) {});
   });
 
-  // Mostrar la sección correspondiente a la ruta actual
+  // WINDOWS CHANGE SPA HIDE / SHOW FUNCTIONALITY MODULE --------------------
+  // Show the appropriate section based on the current route
   if (!currentRoute || currentRoute === "#/welcome") {
-    // Establecer '#/welcome' como la ruta por defecto
+    // Set '#/welcome' as the default route
     document.getElementById("welcome").style.display = "block";
     document.getElementById("home").style.display = "none";
   } else if (currentRoute === "#/home") {
-    // Ocultar la sección de inicio de sesión y mostrar la de inicio
     document.getElementById("welcome").style.display = "none";
     document.getElementById("home").style.display = "block";
   }
 
-  // LOG OUT ----------------------------------------------------
+  // LOG OUT MODULE ----------------------------------------------------
+  // Function to log out the user
   function logout() {
     return new Promise((resolve, reject) => {
       fetch("http://localhost:8080/excurrency/conversion?op=logout", {
@@ -184,35 +195,34 @@ document.addEventListener("DOMContentLoaded", function () {
         headers: {
           "Content-Type": "application/json",
         },
-        // with credentials
         credentials: "include",
       })
         .then(function (response) {
           if (response.status == 200) {
-            resolve(); // Resuelve la promesa en caso de éxito
+            resolve();
             console.log("OK salida exitosa");
             document.getElementById("home").style.display = "none";
             document.getElementById("welcome").style.display = "block";
             hideUsername();
             resetForm();
           } else {
-            reject(); // Rechaza la promesa en caso de error
+            reject();
             throw "KO";
           }
         })
         .catch(function (error) {
           console.log("Error al intentar cerrar sesión", error);
-          reject(); // Rechaza la promesa en caso de error
+          reject();
         });
     });
   }
-
+  // Get a reference to the "Logout" button in the menu bar
   const logoutButton = document.getElementById("logoutMenu");
 
-  // Asigna un evento de clic al botón "Logout"
+  // Add a click event to the "Logout" button
   logoutButton.addEventListener("click", function (event) {
     event.preventDefault();
-    // Llama a la función logout y maneja la promesa resultante
+    // Call the logout function and handle the resulting promise
     logout();
   });
 });

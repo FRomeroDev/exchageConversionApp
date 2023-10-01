@@ -1,31 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- FERNANDO ROMERO API frontend SPA ProjectTasca - username: admin - password:admin -->
+<!-- FERNANDO ROMERO API frontend SPA ProjectTasca - username: admin - password: bonitodaw -->
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"
         integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Include Bootstrap JavaScript files at the end of the document body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,600;1,700&family=Ubuntu:ital,wght@0,700;1,700&display=swap"
+        rel="stylesheet">
 
 
-    <link rel="icon" type="image/jpg" href="icon.svg" />
+    <link rel="icon" type="image/jpg" href="" />
     <title>LottoGenerator</title>
 
 </head>
 
 <body>
-
+    <!-- NAVIGATION BAR LOGIN -->
+    <!-- This section contains the navigation bar for the login page -->
     <div id="welcome" style="display:none;">
-
-        <!-- Bootstrap Navigation Bar -->
         <nav class="navbar navbar-expand-lg custom-navbar">
             <a class="navbar-brand d-flex align-items-center" href="#">
-                <img src="" alt="Logo de LuckyNumbers" class="logo-img">
+                <img src="v1030-065.jpg" alt="" class="logo-img">
                 <span id="custom-title" class="font-italic">ExCurrency</span>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -35,33 +40,32 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" id="loginMenu" href="#/welcome">Log in</a>
+                        <a class="nav-link menu-link" id="loginMenu" href="#/welcome">Log in</a>
                     </li>
                 </ul>
             </div>
         </nav>
 
         <main class="container mt-5">
-            <!-- Welcome message -->
+            <!-- Main content container for the welcome/login page -->
             <h1 class="welcome-text">
-                Explore the Best Weekly Drawings and Win Big!
+                Trusted Global Currency Converter & Money Transfer Solutions
             </h1>
-
             <section class="row">
                 <div class="col-md-6 offset-md-3">
-                    <!-- AngularJS Login Form -->
+                    <!-- Login form section -->
                     <form id="loginForm">
                         <div class="form-group">
                             <label for="login" class="form-label">Username:</label>
                             <input type="text" class="form-control" id="login" name="login"
-                                placeholder="Plese, enter your username" required>
+                                placeholder="Plese, enter your username (admin)" required>
                         </div>
                         <div class="form-group">
                             <label for="password" class="form-label">Password:</label>
                             <input type="password" class="form-control" id="password" name="password"
-                                placeholder="Plese, enter your password" required>
+                                placeholder="Plese, enter your password (bonitodaw)" required>
                         </div>
-                        <button type="submit" class="btn btn-custom btn-block">Log In</button>
+                        <button type="submit" class="btn btn-custom btn-block custom-button-login">Log In</button>
                     </form>
                     <p class="text-center mt-3">Don't have an account? <a href="#">Sign Up</a></p>
                 </div>
@@ -70,13 +74,14 @@
 
     </div>
 
-
+    <!-- NAVIGATION BAR HOME -->
+    <!-- This section contains the navigation bar for the home page -->
     <div id="home" style="display:none;">
-
-        <!-- Bootstrap Navigation Bar -->
+        <!-- This div is displayed when the user is on the home page -->
         <nav class="navbar navbar-expand-lg custom-navbar fixed-top">
+            <!-- Navigation bar with logo, logout link, and user information -->
             <a class="navbar-brand d-flex align-items-center" href="#">
-                <img src="" alt="Logo de LuckyNumbers" class="logo-img">
+                <img src="" alt="" class="logo-img">
                 <span id="custom-title" class="font-italic">ExCurrency</span>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -86,69 +91,67 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" id="logoutMenu" href="#/welcome">Log out</a>
+                        <a class="nav-link menu-link" id="logoutMenu" href="#/welcome">Log out</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="username"></a>
+                        <a class="nav-link menu-user" id="username"></a>
                     </li>
                 </ul>
             </div>
         </nav>
 
-
-        <!-- Contenedor con imagen de fondo -->
-        <div class="container-fluid container-with-bg">
-            <div class="container text-center">
-                <h1>ExCurrency Converter</h1>
-                <h5>Foreign urrency exchange rates</h5>
-                <!-- Puedes agregar más contenido aquí -->
-            </div>
+        <!-- Container with background image and currency conversion form -->
+        <div class="container-fluid container-with-bg text-center">
+            <h1 class="mb-4">ExCurrency Converter</h1>
+            <h5 class="mb-4">Foreign Currency Exchange Rates</h5>
+            <p class="mb-4">Best source for currency conversion, sending money online and tracking exchange rates</p>
+        </div>
+        <div class="container-fluid bg-image">
         </div>
 
-
-        <!-- Contenedor para calcular las monedas (arriba y alargado) -->
-        <div class="container mt-5 conversion-container rounded">
+        <!-- Container for currency conversion form -->
+        <div class="container mt-5 conversion-container d-flex flex-column">
             <form id="formConversion">
                 <div class="row">
                     <div class="col-md-4">
-                        <!-- Casilla para ingresar la cantidad (a la izquierda) -->
                         <div class="form-group">
+                            <!-- Input field for entering the amount to convert -->
                             <label for="amount" class="font-weight-bold">Amount:</label>
-                            <input type="text" id="amount" class="form-control imput-custom" placeholder="Enter amount">
+                            <input type="text" id="amount" class="form-control imput-custom"
+                                placeholder="Enter amount">
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <!-- Casilla para seleccionar monedas De: -->
                         <div class="form-group">
+                            <!-- Dropdown to select the currency to convert from -->
                             <label for="currencyFrom" class="font-weight-bold">From:</label>
                             <select id="currencyFrom" class="form-control imput-custom">
                                 <option value="EUR">Euro</option>
-                                <option value="USD">Dólar estadounidense</option>
-                                <option value="GBP">Libra esterlina</option>
-                                <!-- Agrega más opciones según sea necesario -->
+                                <option value="USD">US Dollar</option>
+                                <option value="GBP">British Pound Sterling</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <!-- Casilla para seleccionar monedas A: -->
                         <div class="form-group">
+                            <!-- Dropdown to select the currency to convert to -->
                             <label for="currencyTo" class="font-weight-bold">To:</label>
                             <select id="currencyTo" class="form-control imput-custom">
-                                <option value="USD">Dólar estadounidense</option>
+                                <option value="USD">US Dollar</option>
                                 <option value="EUR">Euro</option>
-                                <option value="GBP">Libra esterlina</option>
-                                <!-- Agrega más opciones según sea necesario -->
+                                <option value="GBP">British Pound Sterling</option>
                             </select>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="result" class="font-weight-bold">Resultado:</label>
-                    <p id="result" class="mt-2"></p>
+                    <label for="result" class="font-weight-bold"></label>
+                    <p id="result" class="mt-2 font-weight-bold display-4"></p>
                 </div>
                 <div class="form-group text-right">
-                    <button class="btn btn-custom btn-lg">Convert</button>
-                    <button id="resetButton" class="btn btn-custom btn-lg ml-2">Reset</button>
+                    <!-- Action buttons for conversion or reset-->
+                    <button class="btn btn-custom btn-lg rounded custom-button-home">Convert</button>
+                    <button id="resetButton" class="btn btn-lg ml-2 custom-button-home rounded">Reset</button>
                 </div>
             </form>
         </div>

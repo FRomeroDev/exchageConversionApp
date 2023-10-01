@@ -5,6 +5,8 @@ public class ResponseBean {
     private double amount;
     private String currencyFrom;
     private String currencyTo;
+    private double conversionRateFromTo;
+    private double conversionRateToFrom;
     private double result;
     private String errorDescription;
 
@@ -30,6 +32,22 @@ public class ResponseBean {
 
     public void setCurrencyTo(String currencyTo) {
         this.currencyTo = currencyTo;
+    }
+
+    public double getConversionRateFromTo() {
+        return conversionRateFromTo;
+    }
+
+    public void setConversionRateFromTo(double conversionRateFromTo) {
+        this.conversionRateFromTo = conversionRateFromTo;
+    }
+
+    public double getConversionRateToFrom() {
+        return conversionRateToFrom;
+    }
+
+    public void setConversionRateToFrom(double conversionRateToFrom) {
+        this.conversionRateToFrom = conversionRateToFrom;
     }
 
     public double getResult() {
