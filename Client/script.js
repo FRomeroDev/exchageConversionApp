@@ -69,31 +69,12 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("currencyFrom").value = "EUR";
     document.getElementById("currencyTo").value = "USD";
     document.getElementById("result").innerHTML = "";
-
-    // Send a fetch request to reset the form on the server
-    fetch("http://localhost:8080/excurrency/conversion?op=reset", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    })
-      .then(function (response) {
-        if (response.status == 200) {
-          console.log("Reset ok");
-        } else {
-          console.log("Error reset");
-        }
-      })
-      .catch(function (error) {
-        console.log("Error reset", error);
-      });
   }
   document.getElementById("resetButton").addEventListener("click", resetForm);
 
   // LOGIN MODULE -------------------------------------------------
   // Get the current route
-  const currentRoute = window.location.hash;
+  //const currentRoute = window.location.hash;
   // Function to display the username in the navigation bar
   function showUsername(username) {
     const usernameElement = document.getElementById("username");
@@ -174,6 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       .catch(function (error) {});
   });
+  const currentRoute = window.location.hash;
 
   // WINDOWS CHANGE SPA HIDE / SHOW FUNCTIONALITY MODULE --------------------
   // Show the appropriate section based on the current route
@@ -185,6 +167,53 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("welcome").style.display = "none";
     document.getElementById("home").style.display = "block";
   }
+
+  function check() {
+    return new Promise((resolve, reject) => {
+      fetch("http://localhost:8080/excurrency/conversion?op=check", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      })
+        .then(function (response) {
+          console.log("Sesión iniciada", response);
+
+          if (response.status == 200) {
+            console.log("Sesión iniciada");
+            resolve(true); // Resuelve la promesa si la sesión está abierta
+          } else {
+            console.log("Sesión cerrada");
+            reject(false); // Rechaza la promesa si la sesión está cerrada
+          }
+        })
+        .catch(function (error) {
+          console.error("Error al verificar la sesión en el servidor:", error);
+          reject(false); // Rechaza la promesa en caso de error
+        });
+    });
+  }
+  // Uso de la función check con promesas
+  // Llama a la función check al cargar la página principal
+  check()
+    .then((sessionOpen) => {
+      if (sessionOpen) {
+        // La sesión está abierta en el servidor
+        // Redirige al usuario a la página de inicio
+        window.location.hash = "#/home";
+        document.getElementById("home").style.display = "block";
+      } else {
+        // La sesión está cerrada en el servidor
+        // Redirige al usuario a la página de bienvenida
+        window.location.hash = "#/welcome";
+        document.getElementById("welcome").style.display = "block";
+      }
+    })
+    .catch((error) => {
+      console.error("Error al verificar la sesión en el servidor:", error);
+      // Puedes manejar el error de acuerdo a tus necesidades
+    });
 
   // LOG OUT MODULE ----------------------------------------------------
   // Function to log out the user
